@@ -1,11 +1,30 @@
+import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import {Header} from "./components";
+import { Header, Cart } from "./components";
+import { observer } from "mobx-react";
+import CartStore from "./stores/CartStore";
 
-const App: React.FC = () => {
+const App: React.FC = observer(() => {
+  const [open, setOpen] = useState(false);
+  const { cart, cartSize, delCartItem } = CartStore;
+
+  const onOpen = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
+
+  const onDelete = (id: number) => {
+    delCartItem(id);
+  };
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header onOpen={onOpen} cartSize={cartSize} />
+      <Cart open={open} onClose={onClose} cart={cart} onDelete={onDelete} />
       <div className="container px-2 py-4 mx-auto">
         <Switch>
           <Route component={Home} path="/" exact />
@@ -13,6 +32,6 @@ const App: React.FC = () => {
       </div>
     </BrowserRouter>
   );
-}
+});
 
 export default App;

@@ -19,6 +19,10 @@ class Cart {
     this.cart.push(item);
   };
 
+  delCartItem = (id: number) => {
+    this.cart = this.cart.filter((item) => item.id !== id);
+  };
+
   get cartSize(){
     return this.cart.length;
   }
