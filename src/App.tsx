@@ -6,10 +6,12 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Switch>
-        <Route component={Home} path="/" exact />
-      </Switch>
-  </BrowserRouter>
+      <div className="container px-2 py-4 mx-auto">
+        <Switch>
+          <Route component={Home} path="/" exact />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

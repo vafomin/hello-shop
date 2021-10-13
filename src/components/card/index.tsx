@@ -1,16 +1,19 @@
 import { ShoppingBagIcon, HeartIcon } from '@heroicons/react/outline'
+import {HeartIcon as FillHeartIcon} from "@heroicons/react/solid"
 
 interface CardProps {
     name: string,
     price: string,
     image: string,
+    isLike: boolean,
+    onLikeClick(): void
   }
   
 const Card: React.FC<CardProps> = (props) => {
-    const {name, price, image} = props;
+    const {name, price, image, isLike, onLikeClick} = props;
 
     return (
-    <div className="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
+    <div className="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3">
     <div className="overflow-x-hidden rounded-2xl relative">
       <img className="h-40 rounded-2xl w-full object-cover" src={image} alt=""/>
       <p className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group hover:bg-blue-600 hover:text-white">
@@ -23,7 +26,7 @@ const Card: React.FC<CardProps> = (props) => {
         <p className="text-md text-gray-800 mt-0">{price}</p>
       </div>
       <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
-        <HeartIcon className="h-5 w-5 hover:text-red-600" />
+        {isLike ? <FillHeartIcon className="h-5 w-5 text-red-600" onClick={onLikeClick}/> : <HeartIcon className="h-5 w-5 hover:text-red-600" onClick={onLikeClick}/>}
       </div>
     </div>
   </div>);
