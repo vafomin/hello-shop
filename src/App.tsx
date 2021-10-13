@@ -7,7 +7,7 @@ import CartStore from "./stores/CartStore";
 
 const App: React.FC = observer(() => {
   const [open, setOpen] = useState(false);
-  const { cart, cartSize, delCartItem } = CartStore;
+  const { cart, cartSize, delCartItem, allPrice } = CartStore;
 
   const onOpen = () => {
     setOpen(true);
@@ -17,14 +17,20 @@ const App: React.FC = observer(() => {
     setOpen(false);
   };
 
-  const onDelete = (id: number) => {
-    delCartItem(id);
+  const onDelete = (index: number) => {
+    delCartItem(index);
   };
 
   return (
     <BrowserRouter>
       <Header onOpen={onOpen} cartSize={cartSize} />
-      <Cart open={open} onClose={onClose} cart={cart} onDelete={onDelete} />
+      <Cart
+        open={open}
+        onClose={onClose}
+        cart={cart}
+        onDelete={onDelete}
+        allPrice={allPrice}
+      />
       <div className="container px-2 py-4 mx-auto">
         <Switch>
           <Route component={Home} path="/" exact />

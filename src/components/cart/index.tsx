@@ -14,11 +14,12 @@ interface CartProps {
   open: boolean;
   onClose(): void;
   cart: CartData[];
-  onDelete(id: number): void;
+  onDelete(index: number): void;
+  allPrice: number;
 }
 
 const Cart: React.FC<CartProps> = (props) => {
-  const { open, onClose, cart, onDelete } = props;
+  const { open, onClose, cart, onDelete, allPrice } = props;
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -73,7 +74,7 @@ const Cart: React.FC<CartProps> = (props) => {
                 <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
                   <div className="px-4 sm:px-6">
                     <Dialog.Title className="text-lg font-medium text-gray-900">
-                      Cart
+                      Cart on {allPrice}$
                     </Dialog.Title>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
@@ -100,7 +101,7 @@ const Cart: React.FC<CartProps> = (props) => {
                         <div className="p-2 cursor-pointer">
                           <TrashIcon
                             className="w-5 h-5 hover:text-red-600"
-                            onClick={() => onDelete(item.id)}
+                            onClick={() => onDelete(index)}
                           />
                         </div>
                       </div>

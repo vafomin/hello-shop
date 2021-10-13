@@ -19,13 +19,19 @@ class Cart {
     this.cart.push(item);
   };
 
-  delCartItem = (id: number) => {
-    this.cart = this.cart.filter((item) => item.id !== id);
+  delCartItem = (index: number) => {
+    this.cart.splice(index, 1);;
   };
 
   get cartSize(){
     return this.cart.length;
   }
+
+  get allPrice(){
+    let price = 0;
+    return this.cart.map(item => price+=item.price).reverse()[0];
+  }
+
 }
 
 
