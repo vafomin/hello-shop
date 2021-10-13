@@ -1,15 +1,7 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon, TrashIcon } from "@heroicons/react/outline";
-
-interface CartData {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  isLike: boolean;
-}
-
+import { CartData } from "../../interfaces";
 interface CartProps {
   open: boolean;
   onClose(): void;

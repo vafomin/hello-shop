@@ -1,13 +1,5 @@
+import { CartData } from './../interfaces';
 import { makeAutoObservable } from "mobx";
-
-interface CartData{
-    id: number,
-    name: string,
-    price: number,
-    image: string,
-    isLike: boolean
-}
-
 class Cart {
   cart:CartData[] = [];
 
