@@ -1,6 +1,10 @@
 import { ShoppingBagIcon } from '@heroicons/react/outline'
+import { observer } from "mobx-react"
+import CartStore from "../../stores/CartStore"
 
-const Header: React.FC = () => {
+const Header: React.FC = observer(() => {
+    const { cartSize } = CartStore;
+
     return (
     <nav className="font-sans flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full">
         <div className="mb-2 sm:mb-0 inner">
@@ -10,12 +14,12 @@ const Header: React.FC = () => {
         </div>
 
         <div className="sm:mb-0 self-center">
-            <button className="bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
-                <ShoppingBagIcon className="h-5 w-5" />
+            <button className="inline-flex items-center bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
+                <ShoppingBagIcon className="h-5 w-5" /> {cartSize}
             </button>
         </div>
     </nav>
   );
-}
+})
 
 export default Header;
