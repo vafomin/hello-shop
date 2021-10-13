@@ -21,6 +21,22 @@ interface CartProps {
 const Cart: React.FC<CartProps> = (props) => {
   const { open, onClose, cart, onDelete, allPrice } = props;
 
+  const cartTitle = allPrice ? `Cart on ${allPrice}$` : "Cart";
+
+  const emptyCart = () => {
+    return (
+      <div className="text-center">
+        <span role="img" className="text-5xl">
+          😢
+        </span>
+
+        <p className="mt-6 text-gray-500">
+          The cart is empty... Start shopping!
+        </p>
+      </div>
+    );
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -74,38 +90,40 @@ const Cart: React.FC<CartProps> = (props) => {
                 <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
                   <div className="px-4 sm:px-6">
                     <Dialog.Title className="text-lg font-medium text-gray-900">
-                      Cart on {allPrice}$
+                      {cartTitle}
                     </Dialog.Title>
                   </div>
                   <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                    {cart.map((item, index) => (
-                      <div
-                        className="bg-white w-full flex items-center p-2 mb-6 rounded-xl shadow border"
-                        key={`item-${index}`}
-                      >
-                        <div className="flex items-center space-x-4">
-                          <img
-                            src={item.image}
-                            alt=""
-                            className="w-16 h-16 rounded-full"
-                          />
-                        </div>
-                        <div className="flex-grow p-3">
-                          <div className="font-semibold text-gray-700">
-                            {item.name}
+                    {cart.length > 0
+                      ? cart.map((item, index) => (
+                          <div
+                            className="bg-white w-full flex items-center p-2 mb-6 rounded-xl shadow border"
+                            key={`item-${index}`}
+                          >
+                            <div className="flex items-center space-x-4">
+                              <img
+                                src={item.image}
+                                alt=""
+                                className="w-16 h-16 rounded-full"
+                              />
+                            </div>
+                            <div className="flex-grow p-3">
+                              <div className="font-semibold text-gray-700">
+                                {item.name}
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                ${item.price}
+                              </div>
+                            </div>
+                            <div className="p-2 cursor-pointer">
+                              <TrashIcon
+                                className="w-5 h-5 hover:text-red-600"
+                                onClick={() => onDelete(index)}
+                              />
+                            </div>
                           </div>
-                          <div className="text-sm text-gray-500">
-                            ${item.price}
-                          </div>
-                        </div>
-                        <div className="p-2 cursor-pointer">
-                          <TrashIcon
-                            className="w-5 h-5 hover:text-red-600"
-                            onClick={() => onDelete(index)}
-                          />
-                        </div>
-                      </div>
-                    ))}
+                        ))
+                      : emptyCart()}
                   </div>
                 </div>
               </div>
