@@ -2,12 +2,13 @@ import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { Header, Cart } from "./components";
+import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react";
-import CartStore from "./stores/CartStore";
 
 const App: React.FC = observer(() => {
   const [open, setOpen] = useState(false);
-  const { cart, cartSize, delCartItem, allPrice } = CartStore;
+  const { cartStore } = useStore();
+  const { cart, cartSize, delCartItem, allPrice } = cartStore;
 
   const onOpen = () => {
     setOpen(true);

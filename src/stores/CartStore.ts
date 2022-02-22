@@ -1,6 +1,7 @@
 import { CartData } from './../interfaces';
 import { makeAutoObservable } from "mobx";
-class Cart {
+
+class CartStore {
   cart:CartData[] = [];
 
   constructor() {
@@ -12,7 +13,7 @@ class Cart {
   };
 
   delCartItem = (index: number) => {
-    this.cart.splice(index, 1);;
+    this.cart.splice(index, 1);
   };
 
   get cartSize(){
@@ -21,12 +22,9 @@ class Cart {
 
   get allPrice(){
     let price = 0;
-    return this.cart.map(item => price+=item.price).reverse()[0];
+    return this.cart.map(item => price+=Number(item.price)).reverse()[0];
   }
 
 }
-
-
-const CartStore = new Cart();
 
 export default CartStore;

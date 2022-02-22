@@ -3,5 +3,4 @@ export interface CartData {
     name: string;
     price: number;
     image: string;
-    isLike: boolean;
 };

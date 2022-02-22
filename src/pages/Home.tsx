@@ -1,21 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "../components";
-import { shopData } from "../fakeData";
 import { observer } from "mobx-react";
-import CartStore from "../stores/CartStore";
+import { getData } from "../api";
+import { CartData } from "./../interfaces";
+import { useStore } from "../hooks/useStore";
 
-const Home: React.FC = observer((props) => {
-  const [data, setData] = useState(shopData);
-  const { addCartItem } = CartStore;
+const Home: React.FC = () => {
+  const [data, setData] = useState<CartData[]>([]);
+  const { cartStore, likeStore } = useStore();
+  const { addCartItem } = cartStore;
+  const { likeItem, isLike } = likeStore;
+
+  const fillShop = async () => {
+    const data = await getData();
+    setData(data);
+  };
 
   const onLikeClick = (id: number) => {
-    shopData[id].isLike = !shopData[id].isLike;
-    setData([...shopData]);
+    likeItem(id);
   };
 
   const onCartClick = (id: number) => {
-    addCartItem(data[id]);
+    addCartItem(data[id - 1]);
   };
+
+  useEffect(() => {
+    fillShop();
+  }, []);
 
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -25,7 +36,7 @@ const Home: React.FC = observer((props) => {
             name={item.name}
             price={item.price}
             image={item.image}
-            isLike={item.isLike}
+            isLike={isLike(item.id)}
             onLikeClick={() => onLikeClick(item.id)}
             onCartClick={() => onCartClick(item.id)}
           />
@@ -33,6 +44,6 @@ const Home: React.FC = observer((props) => {
       ))}
     </div>
   );
-});
+};
 
-export default Home;
+export default observer(Home);
