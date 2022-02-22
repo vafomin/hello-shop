@@ -18,9 +18,9 @@ const Home: React.FC = observer((props) => {
   };
 
   return (
-    <div className="flex flex-wrap -m-4 justify-center align-center">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {data.map((item, index) => (
-        <div className="p-4 lg:w-1/4 md:w-1/3" key={`item-${index}`}>
+        <div className="p-4" key={`item-${index}`}>
           <Card
             name={item.name}
             price={item.price}
