@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Card } from "../components";
+import { Card, Loader } from "../components";
 import { observer } from "mobx-react";
 import { getData } from "../api";
 import { CartData } from "./../interfaces";
@@ -27,6 +27,8 @@ const Home: React.FC = () => {
   useEffect(() => {
     fillShop();
   }, []);
+
+  if (data.length === 0) return <Loader />;
 
   return (
     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
