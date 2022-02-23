@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { Header, Cart } from "./components";
+import { Header, Cart, Alert } from "./components";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react";
 
@@ -24,6 +24,7 @@ const App: React.FC = observer(() => {
 
   return (
     <BrowserRouter>
+      <Alert />
       <Header onOpen={onOpen} cartSize={cartSize} />
       <Cart
         open={open}
