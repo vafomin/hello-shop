@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { Header, Cart, Alert } from "./components";
+import { toastRemove } from "./components/alert";
 import { useStore } from "./hooks/useStore";
 import { observer } from "mobx-react";
 
@@ -20,6 +21,7 @@ const App: React.FC = observer(() => {
 
   const onDelete = (index: number) => {
     delCartItem(index);
+    toastRemove();
   };
 
   return (

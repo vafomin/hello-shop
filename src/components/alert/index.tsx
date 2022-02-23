@@ -1,6 +1,11 @@
 import toast, { Toaster } from "react-hot-toast";
 
-const Bar: React.FC = () => {
+export interface BarProps {
+  title: string;
+}
+
+const Bar: React.FC<BarProps> = (props) => {
+  const { title } = props;
   return (
     <div
       className="flex items-center justify-center p-4 text-green-700 rounded bg-green-50"
@@ -21,7 +26,7 @@ const Bar: React.FC = () => {
         />
       </svg>
 
-      <h3 className="ml-3 text-sm font-medium">Product added to cart!</h3>
+      <h3 className="ml-3 text-sm font-medium">{title}</h3>
     </div>
   );
 };
@@ -29,18 +34,22 @@ const Bar: React.FC = () => {
 const Alert: React.FC = () => {
   return (
     <Toaster
-      position="top-right"
-      reverseOrder={true}
+      position="bottom-center"
+      reverseOrder={false}
       gutter={8}
       toastOptions={{
         custom: {
-          duration: 2000,
+          duration: 1000,
         },
       }}
     />
   );
 };
 
-export const toastShow = () => toast.custom(<Bar />);
+export const toastAdd = () =>
+  toast.custom(<Bar title="Product added to cart!" />);
+
+export const toastRemove = () =>
+  toast.custom(<Bar title="Product removed from cart!" />);
 
 export default Alert;

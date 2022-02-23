@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, Loader } from "../components";
-import { toastShow } from "../components/alert";
+import { toastAdd } from "../components/alert";
 import { observer } from "mobx-react";
 import { getData } from "../api";
 import { CartData } from "./../interfaces";
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
 
   const onCartClick = (id: number) => {
     addCartItem(data[id - 1]);
-    toastShow();
+    toastAdd();
   };
 
   useEffect(() => {
