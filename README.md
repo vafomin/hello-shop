@@ -1,6 +1,7 @@
 # Hello Shop 🛒
 
-Simple shop on React + TS
+Simple shop on React + TS.
+Show demo on [Vercel](https://hello-shop.vercel.app/)
 
 # Stack 🛠
 
@@ -8,6 +9,9 @@ Simple shop on React + TS
 - Type Script
 - React Router
 - MobX
+- Tailwind
+- React Hot Toast
+- CodeceptJS
 
 # Easy local launch 🚀
 
