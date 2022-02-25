@@ -26,11 +26,7 @@
     "scripts": {
         "start": "craco start",
         "build": "craco build",
-        "test": "craco test",
-        "eject": "react-scripts eject",
-        "codeceptjs": "codeceptjs run --steps",
-        "codeceptjs:headless": "HEADLESS=true codeceptjs run --steps",
-        "codeceptjs:ui": "codecept-ui --app"
+        "test": "codeceptjs run --steps"
     },
     "eslintConfig": {
         "extends": [
