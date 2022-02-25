@@ -23,6 +23,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
       <div className="sm:mb-0 self-center">
         <button
+          id="cart-button"
           className="inline-flex items-center bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6"
           onClick={onOpen}
         >

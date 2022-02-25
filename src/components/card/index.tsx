@@ -22,6 +22,7 @@ const Card: React.FC<CardProps> = (props) => {
           alt=""
         />
         <p
+          id="add-to-cart-button"
           className="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group hover:bg-blue-600 hover:text-white"
           onClick={onCartClick}
         >
@@ -36,11 +37,13 @@ const Card: React.FC<CardProps> = (props) => {
         <div className="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
           {isLike ? (
             <FillHeartIcon
+              id="fill-heart"
               className="h-5 w-5 text-red-600"
               onClick={onLikeClick}
             />
           ) : (
             <HeartIcon
+              id="heart"
               className="h-5 w-5 hover:text-red-600"
               onClick={onLikeClick}
             />
