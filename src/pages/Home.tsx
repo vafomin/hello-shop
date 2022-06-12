@@ -8,6 +8,7 @@ import { useStore } from "../hooks/useStore";
 
 const Home: React.FC = () => {
   const [data, setData] = useState<CartData[]>([]);
+  const [error, setIsError] = useState<boolean>(false);
 
   const { cartStore, likeStore } = useStore();
   const { addCartItem } = cartStore;
@@ -15,6 +16,10 @@ const Home: React.FC = () => {
 
   const fillShop = async () => {
     const data = await getData();
+    if (!data) {
+      setIsError(true);
+      return;
+    }
     setData(data);
   };
 
@@ -31,7 +36,21 @@ const Home: React.FC = () => {
     fillShop();
   }, []);
 
-  if (data.length === 0) return <Loader />;
+  if (data.length === 0 && !error) return <Loader />;
+
+  if (error) {
+    return (
+      <div className="text-center mt-4">
+        <span role="img" className="text-5xl">
+          😵
+        </span>
+        <p className="mt-6 text-gray-500">Oops... Failed to retrieve data</p>
+        <a className="mt-2 text-blue-500 hover:text-blue-600" href="/">
+          Try reload page!
+        </a>
+      </div>
+    );
+  }
 
   return (
     <>
