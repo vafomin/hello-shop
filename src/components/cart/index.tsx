@@ -24,9 +24,7 @@ const Cart: React.FC<CartProps> = (props) => {
           😢
         </span>
 
-        <p className="mt-6 text-gray-500">
-          The cart is empty... Start shopping!
-        </p>
+        <p className="mt-6 text-gray-500">Cart is empty... Start shopping!</p>
       </div>
     );
   };
@@ -109,7 +107,10 @@ const Cart: React.FC<CartProps> = (props) => {
                                 ${item.price}
                               </div>
                             </div>
-                            <div className="p-2 cursor-pointer">
+                            <div
+                              id={`delete-item-${index}`}
+                              className="p-2 cursor-pointer"
+                            >
                               <TrashIcon
                                 className="w-5 h-5 hover:text-red-600"
                                 onClick={() => onDelete(index)}
@@ -122,6 +123,7 @@ const Cart: React.FC<CartProps> = (props) => {
                     {cart.length > 0 && (
                       <div className="flex items-center">
                         <button
+                          id="clear-cart"
                           className="flex items-center justify-center  w-full px-8 py-3 text-white bg-blue-500 border rounded hover:bg-transparent hover:text-red-600 active:text-red-500 focus:outline-none focus:ring"
                           onClick={clearCart}
                         >
