@@ -9,7 +9,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const { cartSize, onOpen } = props;
 
   return (
-    <nav className="font-sans flex text-left sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full">
+    <nav className="sticky top-0 z-10 font-sans flex text-left sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full">
       <div className="mb-2 sm:mb-0 inner">
         <a
           href="/"
