@@ -2,16 +2,18 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon, TrashIcon } from "@heroicons/react/outline";
 import { CartData } from "../../interfaces";
+
 interface CartProps {
   open: boolean;
   onClose(): void;
   cart: CartData[];
   onDelete(index: number): void;
   allPrice: number;
+  clearCart(): void;
 }
 
 const Cart: React.FC<CartProps> = (props) => {
-  const { open, onClose, cart, onDelete, allPrice } = props;
+  const { open, onClose, cart, onDelete, allPrice, clearCart } = props;
 
   const cartTitle = allPrice ? `Cart on ${allPrice}$` : "Cart";
 
@@ -116,6 +118,20 @@ const Cart: React.FC<CartProps> = (props) => {
                           </div>
                         ))
                       : emptyCart()}
+
+                    {cart.length > 0 && (
+                      <div className="flex items-center">
+                        <button
+                          className="flex items-center justify-center  w-full px-8 py-3 text-white bg-blue-500 border rounded hover:bg-transparent hover:text-red-600 active:text-red-500 focus:outline-none focus:ring"
+                          onClick={clearCart}
+                        >
+                          <span className="text-sm font-medium">
+                            Clear cart
+                          </span>
+                          <TrashIcon className="w-5 h-5 ml-2" />
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -9,7 +9,7 @@ import { observer } from "mobx-react";
 const App: React.FC = observer(() => {
   const [open, setOpen] = useState(false);
   const { cartStore } = useStore();
-  const { cart, cartSize, delCartItem, allPrice } = cartStore;
+  const { cart, cartSize, delCartItem, allPrice, clearCart } = cartStore;
 
   const onOpen = () => {
     setOpen(true);
@@ -34,6 +34,7 @@ const App: React.FC = observer(() => {
         cart={cart}
         onDelete={onDelete}
         allPrice={allPrice}
+        clearCart={clearCart}
       />
       <div className="container px-2 py-4 mx-auto">
         <Switch>

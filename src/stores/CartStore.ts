@@ -16,6 +16,10 @@ class CartStore {
     this.cart.splice(index, 1);
   };
 
+  clearCart = () => {
+    this.cart = []
+  }
+
   get cartSize(){
     return this.cart.length;
   }
