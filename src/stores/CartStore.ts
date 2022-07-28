@@ -25,10 +25,10 @@ class CartStore {
   }
 
   get allPrice(){
-    let price = 0;
-    return this.cart.map(item => price+=Number(item.price)).reverse()[0];
+    return this.cart.reduce((sum: number, item: CartData) => {
+      return sum + item.price;
+    }, 0);
   }
-
 }
 
 export default CartStore;
